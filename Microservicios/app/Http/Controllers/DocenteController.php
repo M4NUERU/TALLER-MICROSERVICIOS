@@ -58,19 +58,7 @@ class DocenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $row =Docente::find($id);
-        if(empty($row)){
-            return new Response('señor usuario no existe el registro',404);
-        }
-        $input = $request->all();
-        $row->id = $input['id'];
-        $row->nombre= $input['nombre'];
-        $row->ocupacion = $input['ocupacion'];
-        $row->save();
-        return $row;
-    }
+   
 
     /**
      * Remove the specified resource from storage.
@@ -78,14 +66,7 @@ class DocenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $row =Docente::find($id);
-        if(empty($row)){
-            return new Response('señor usuario no existe el registro',404);
-        }
-        $row->delete();
-        return 'registro eliminado';
+    
     }
     public function cursos($id)
     {
@@ -103,4 +84,27 @@ class DocenteController extends Controller
         
         return new Response($cursos);
     }
+
+    public function update(Request $request, $id)
+    {
+        $row =Docente::find($id);
+        if(empty($row)){
+            return new Response('señor usuario no existe el registro',404);
+        }
+        $input = $request->all();
+        $row->id = $input['id'];
+        $row->nombre= $input['nombre'];
+        $row->ocupacion = $input['ocupacion'];
+        $row->save();
+        return $row;
+    }
+    
+    public function destroy($id)
+    {
+        $row =Docente::find($id);
+        if(empty($row)){
+            return new Response('señor usuario no existe el registro',404);
+        }
+        $row->delete();
+        return 'registro eliminado';
 }
